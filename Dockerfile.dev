@@ -1,0 +1,20 @@
+FROM ruby:3.3.3
+
+WORKDIR /rails
+
+# ติดตั้ง dependencies สำหรับ Rails dev
+RUN apt-get update -qq && \
+    apt-get install -y nodejs postgresql-client build-essential libvips
+
+# ติดตั้ง gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# คัดลอกโค้ด
+COPY . .
+
+# expose port 3000 สำหรับ dev
+EXPOSE 3000
+
+# รัน Rails server
+CMD ["rails", "server", "-b", "0.0.0.0"]
