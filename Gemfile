@@ -23,7 +23,7 @@ gem "solid_cable"
 
 
 gem "bcrypt", "~> 3.1.18"
-gem "jwt", "~> 2.7"
+gem "jwt", "~> 3.1"
 gem "rack-cors"
 
 
