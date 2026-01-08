@@ -1,0 +1,35 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: myuser
+  password: mypassword
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+
+development:
+  <<: *default
+  database: log_db_api_development
+test:
+  <<: *default
+  database: log_db_api_test
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: log_db_api_production
+    username: log_db_api
+    password: <%= ENV["LOG_DB_API_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *primary_production
+    database: log_db_api_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: log_db_api_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: log_db_api_production_cable
+    migrations_paths: db/cable_migrate

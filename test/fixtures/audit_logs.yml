@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  auditable_type: MyString
+  auditable_id: 
+  action: MyString
+  audited_changes: 
+
+two:
+  user: two
+  auditable_type: MyString
+  auditable_id: 
+  action: MyString
+  audited_changes: 
